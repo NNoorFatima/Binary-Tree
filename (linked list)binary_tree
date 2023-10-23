@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+template<typename T>
+class Node 
+{
+public:
+    T data;
+    Node<T>* left;
+    Node<T>* right;
+};
+tmeplate <class T>
+class BinaryTree
+{
+public:
+    Node<T>* root;
+    BinaryTree()
+    {
+        root=nullptr;
+    }
+    BinaryTree(T val)
+    {
+        root->data=val;
+        root->left=nullptr;
+        root->right=nullptr;
+    }
+    
+};
+int main()
+{
+  
+    return 0;
+}
