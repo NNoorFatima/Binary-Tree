@@ -13,14 +13,14 @@ void setleft(char a,int parent_index)
     if(tree[parent_index]=='\0')
         cout<<"parent doesnt exist\n";
     else
-        tree[2*parent_index+1]=a;
+        tree[2*parent_index+1]=a;        //when starting from index 0 if index was started from 1 then 2k
 }
 void setright(char a,int parent_index)
 {
     if(tree[parent_index]=='\0')
         cout<<"parent doesnt exist\n";
     else
-        tree[2*parent_index+2]=a;
+        tree[2*parent_index+2]=a;        //when starting from index 0 if index was started from 1 then 2k+1
 }
 void print()
 {
