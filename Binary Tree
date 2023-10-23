@@ -37,6 +37,18 @@ void print()
         }
     }
 }
+bool isEmpty()
+{
+    if(tree[0]=='\0')
+        return 1;
+    return 0;
+}
+bool isRoot(char a)
+{
+    if(tree[0]==a)
+        return 1;
+    return 0;
+}
 int main()
 {
    root('a');
