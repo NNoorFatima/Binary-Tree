@@ -1,32 +1,72 @@
+#pragma once
 #include <iostream>
 using namespace std;
-template<typename T>
-class Node 
+
+class Node
 {
 public:
-    T data;
-    Node<T>* left;
-    Node<T>* right;
+	int data;
+	Node* left;
+	Node* right;
+	Node(int d)
+	{
+		data = d;
+		left = right = nullptr;
+	}
 };
-tmeplate <class T>
+
 class BinaryTree
 {
+
 public:
-    Node<T>* root;
-    BinaryTree()
-    {
-        root=nullptr;
-    }
-    BinaryTree(T val)
-    {
-        root->data=val;
-        root->left=nullptr;
-        root->right=nullptr;
-    }
-    
+	Node* Root;
+	BinaryTree()
+	{
+		Root = nullptr;
+	}
+	void insertNode(int data)        //this inserts in sorted order exception (root)
+	{
+		Node* n_node = new Node(data);
+		Node* current = Root;
+		if (Root == nullptr)
+			Root = n_node;
+		else
+		{
+			Node* parent = current;
+			while (current!=nullptr)
+			{
+				parent = current;
+				if (data < current->data)
+				{
+					current = current->left;
+				}
+				else if (data > current->data)
+				{
+					current = current->right;
+				}
+			}
+			if (data < parent->data)
+			{
+				parent->left = n_node;
+			}
+			else
+				parent->right = n_node;
+		}
+	}
+	void inorderTraversal(Node* r)
+	{
+		Node* cur = r;
+		if (cur != nullptr)
+		{
+			inorderTraversal(cur->left);
+			cout << cur->data << endl;
+			inorderTraversal(cur->right);
+			cout << endl;
+		}
+	}
+	void display()
+	{
+		inorderTraversal(Root);
+		
+	}
 };
-int main()
-{
-  
-    return 0;
-}
