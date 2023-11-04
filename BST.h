@@ -8,6 +8,11 @@ public:
     int data;
     B_node* left;
     B_node* right;
+    B_node()
+    {
+        data = 0;
+        left = right = nullptr;
+    }
     B_node(int da)
     {
         data = da;
@@ -184,4 +189,26 @@ public:
         }
         return 0;
     }
+    void print_level_order()    //prints accroding to breadth first transversal
+    {
+        queue<B_node*> q;
+        q.push(root);
+        cout << endl;
+        while (q.empty() != 1)
+        {
+            B_node* temp = q.front();
+            q.pop();
+            cout << temp->data << " ";
+            if (temp->left != nullptr)
+            {
+                q.push(temp->left);
+            }
+            if (temp->right != nullptr)
+            {
+                q.push(temp->right);
+            }
+        }
+        cout << endl;
+    }
+   //DFS  is inorder,preorder and postorder
 };
