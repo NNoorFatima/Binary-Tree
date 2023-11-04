@@ -24,6 +24,7 @@ int main()
     a.deleteData(90);
     a.deleteData(30);
     a.insert(55);
-    cout<<a.search(5);
+     cout << a.search(5);
+    a.print_level_order();
 
 }
