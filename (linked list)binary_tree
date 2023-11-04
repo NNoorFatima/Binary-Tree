@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 using namespace std;
-
+#include "queue"
 class Node
 {
 public:
@@ -24,49 +24,55 @@ public:
 	{
 		Root = nullptr;
 	}
-	void insertNode(int data)        //this inserts in sorted order exception (root)
+	void insert(int a)
 	{
-		Node* n_node = new Node(data);
-		Node* current = Root;
+		Node* n = new Node(a);
 		if (Root == nullptr)
-			Root = n_node;
+			Root = n;
 		else
 		{
-			Node* parent = current;
-			while (current!=nullptr)
+			queue<Node*> q;
+			q.push(Root);
+			while (q.empty() != 1)
 			{
-				parent = current;
-				if (data < current->data)
+				Node* t = q.front();
+				q.pop();
+				if (t->left == nullptr)
 				{
-					current = current->left;
+					t->left = n;
+					break;
 				}
-				else if (data > current->data)
+				else
 				{
-					current = current->right;
+					q.push(t->left);
+				}
+				if (t->right == nullptr)
+				{
+					t->right = n;
+					break;
+				}
+				else
+				{
+					q.push(t->right);
 				}
 			}
-			if (data < parent->data)
-			{
-				parent->left = n_node;
-			}
-			else
-				parent->right = n_node;
 		}
 	}
-	void inorderTraversal(Node* r)
+	void inorderTransversal(Node* treeNode)
 	{
-		Node* cur = r;
-		if (cur != nullptr)
+		if (treeNode == nullptr)
+			return;
+		else
 		{
-			inorderTraversal(cur->left);
-			cout << cur->data << endl;
-			inorderTraversal(cur->right);
-			cout << endl;
+			inorderTransversal(treeNode->left);
+			cout << treeNode->data << " ";
+			inorderTransversal(treeNode->right);
 		}
 	}
 	void display()
 	{
-		inorderTraversal(Root);
-		
+		inorderTransversal(Root);
+		cout << endl;
 	}
+
 };
